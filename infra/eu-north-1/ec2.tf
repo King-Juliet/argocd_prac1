@@ -69,7 +69,7 @@ module "argocd_ec2_keypair_store" {
 module "argocd_ec2_ebs" {
   source = "./modules/ebs"
   availability_zone = module.argocd_subnet.az
-  ebs_volume_size  = 30  # 30 GB
+  ebs_volume_size  = 1  # 1 GB
   ebs_volume_name= "argocd-ebs"
 }
 
