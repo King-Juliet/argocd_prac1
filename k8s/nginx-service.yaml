@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service #name I am giving this service I am creating
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 8080 #should be same as the value in containerPort in deployment.yaml
+
+
+
+#  port: 80
+#This is the port number that the Service will expose internally in the Kubernetes cluster (or externally, depending on the service type).
+
+#It is the port that other pods or external clients will use to access this service.
+
+#So when another pod or client accesses nginx-service:80, the request goes through this port.
+
+
+# targetPort: 8080
+#This is the port on the container (inside the Pod) that receives the traffic.
+
+#The Service forwards the traffic it receives on port 80 to the container’s 8080 port.
+
+#This 8080 should match the containerPort defined in your Deployment:

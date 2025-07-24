@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment #specifies what I want to create. Deployment
+metadata:
+  name: nginx-deployment #name I am giving this deployment I am creating
+  labels: 
+    app: nginx #should be same as the app: value in the Service selector, so that Service will know which pod is registered with it   =
+
+spec: #The specification for the pod in the deployment (basically, the Deployment specs - dont forget, deployment is he abstraction over pod)
+  replicas: 2 # number of pods to create
+  selector:
+    matchLabels:
+      app: nginx
+  template: #blueprint for the pod
+    metadata:
+      labels:
+        app: nginx #name of the pod
+    spec: #specificaions for the container in the pod (basically, the pod specs-- dont forget, pod is the abstraction over deployment)
+      containers:
+      - name: nginx #name of the container
+        image: nginx:1.16 #the image to build the container 
+        ports:
+        - containerPort: 8080 #the port that the container listens on to accept connections. It should match targetPort in the Service.yaml
+
+#ignore the yellow lines. This is the right way.It works
